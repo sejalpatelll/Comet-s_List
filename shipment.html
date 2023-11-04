@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comet's List - PageTitle</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comet's List - PageTitle</title>
+        <link rel="stylesheet" href="style.css">
+        <script type='text/javascript'>
+            function addFields() {
+                // Generate a dynamic number of inputs
+                var number = document.getElementById("productCount").value;
+                var container = document.getElementById("productsContainer");
+                while (container.hasChildNodes()) {
+                    container.removeChild(container.lastChild);
+                }
+                for (i=0;i<number;i++) {
+                    // productContainer = document.createElement("div")
+                    // Append a node with a random text
+                    container.appendChild(document.createTextNode("Product " + (i+1)));
+                    // Create an <input> element, set its type and name attributes
+                    var productID = document.createElement("input");
+                    productID.type = "number";
+                    productID.name = "productID" + i;
+                    productID.id = "productID" + i;
+                    productID.placeholder = "Product ID"
+                    container.appendChild(productID);
+                    var productCount = document.createElement("input");
+                    productCount.type = "number";
+                    productCount.name = "productCount" + i;
+                    productCount.id = "productCount" + i;
+                    productCount.placeholder = "Product Count"
+                    container.appendChild(productCount)
+                    // Append a line break
+                    container.appendChild(document.createElement("br"));
+                }
+            }
+            function updateVisibilityOfElement(elementIds, visible) {
+                console.log("id=" + elementIds)
+                console.log("visible="+visible)
+                for (let i = 0; i < elementIds.length; i++) {
+                    var element = document.getElementById(elementIds[i]);
+                    if (visible) {
+                        element.style.display = "block";
+                    } else {
+                        element.style.display = "none";
+                    }
+                }
+            }
+        </script>
+    </head>
 <body>
 
 <header>
@@ -16,6 +58,7 @@
     <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="buyer.html">Buyer</a></li>
+        <li><a href="transaction.html">Transaction</a></li>
         <li><a href="seller.html">Seller</a></li>
         <li><a href="product.html">Product</a></li>
         <li><a href="shipment.html">Shipment</a></li>
@@ -30,11 +73,20 @@
         <label for="shipmentID">Shipment ID:</label>
         <input type="number" id="shipmentID" name="shipmentID" required><br>
 
-        <label for="isIncomingShipment">Is this shipment going to a warehouse?</label>
-        <input type="checkbox" id="isIncomingShipment" name="isIncomingShipment"><br>
-
-        <label for="sourceAddress">Source Address:</label>
+        <label>
+            <input type="checkbox" id="isIncomingShipment" name="isIncomingShipment" onchange="updateVisibilityOfElement(['sourceAddress', 'sourceAddressLabel'], this.checked)"><br>
+            Is this shipment going to a warehouse?
+        </label>
+        <label for="sourceAddress" id="sourceAddressLabel">Source Address:</label>
         <input type="text" id="sourceAddress" name="sourceAddress"><br>
+
+        <label for="associatedWarehouse">Associated Warehouse:</label>
+        <input type="text" id="associatedWarehouse" name="associatedWarehouse"><br>
+
+        <label for="productCount">Number of Products:</label>
+        <input type="number" id="productCount" name="productCount" onchange="addFields()"><br>
+
+        <div id="productsContainer"></div>
 
         <input type="submit" value="Submit">
     </form>

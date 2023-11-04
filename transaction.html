@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comet's List - PageTitle</title>
+    <link rel="stylesheet" href="style.css">
+    <script type='text/javascript'>
+        function addFields() {
+            // Generate a dynamic number of inputs
+            var number = document.getElementById("productCount").value;
+            var container = document.getElementById("productsContainer");
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++) {
+                // productContainer = document.createElement("div")
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Product " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var productID = document.createElement("input");
+                productID.type = "number";
+                productID.name = "productID" + i;
+                productID.id = "productID" + i;
+                productID.placeholder = "Product ID"
+                container.appendChild(productID);
+                var productCount = document.createElement("input");
+                productCount.type = "number";
+                productCount.name = "productCount" + i;
+                productCount.id = "productCount" + i;
+                productCount.placeholder = "Product Count"
+                container.appendChild(productCount)
+                // Append a line break
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Comet's List</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="buyer.html">Buyer</a></li>
+        <li><a href="transaction.html">Transaction</a></li>
+        <li><a href="seller.html">Seller</a></li>
+        <li><a href="product.html">Product</a></li>
+        <li><a href="shipment.html">Shipment</a></li>
+        <li><a href="updateShipment.html">Update Shipment</a></li>
+        <li><a href="warehouse.html">Warehouse</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>Transaction Section</h2>
+    <form>
+        <label for="transactionID">Transaction ID:</label>
+        <input type="number" id="transactionID" name="transactionID" required><br>
+
+        <label for="buyerID">Buyer ID:</label>
+        <input type="number" id="buyerID" name="buyerID" required><br>
+
+        <label for="productCount">Number of Products:</label>
+        <input type="number" id="productCount" name="productCount" onchange="addFields()"><br>
+
+        <div id="productsContainer"></div>
+
+        <input type="submit" value="Submit">
+    </form>
+</main>
+
+</body>
+</html>

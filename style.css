@@ -69,7 +69,7 @@ form input[type="submit"] {
   cursor: pointer;
   border: none;
   padding: 10px;  
-  width: 100px;  
+  width: 120px;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
