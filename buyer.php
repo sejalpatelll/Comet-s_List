@@ -24,6 +24,24 @@
       $stmt->bind_param("iss", $bid, $fName, $lName);
       $stmt->execute();
     }
+    $stmt->close();
+
+    $sqlAddress = "INSERT INTO Buyer_Addresses (BuyerID, Buyer_Address)
+                   VALUES (?, ?)";
+    if($stmt = $conn->prepare($sqlAddress))
+    {
+      $stmt->bind_param("is", $bid, $address);
+      $stmt->execute();
+    }
+    $stmt->close();
+
+    $sqlCard = "INSERT INTO Buyer_Cards (BuyerID, Buyer_Card)
+                   VALUES (?, ?)";
+    if($stmt = $conn->prepare($sqlCard))
+    {
+      $stmt->bind_param("is", $bid, $card);
+      $stmt->execute();
+    }
 
     $conn->close();
 ?>
