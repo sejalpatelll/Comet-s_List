@@ -60,7 +60,8 @@ CREATE TABLE TransactionProducts (
 	seller_id		int		NOT NULL,
 	transaction_id		int		NOT NULL,
 	product_id		int,
-	PRIMARY KEY (buyer_id, seller_id, transaction_id),
+	product_count	int,
+	PRIMARY KEY (buyer_id, seller_id, transaction_id, product_id),
 	FOREIGN KEY (buyer_id) REFERENCES Buyer(bid)
 		ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (seller_id) REFERENCES Seller(sid)
