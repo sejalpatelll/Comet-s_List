@@ -14,7 +14,7 @@ $warehouseID = $_GET['warehouseID'];
 $warehouseLocation = $_GET['warehouseLocation'];
 $warehouseAddress = $_GET['warehouseAddress'];
 
-$sql = "INSERT INTO Warehouse(warehouse_id, warehouse_location, warehouse_addr) VALUES ($warehouseID, $warehouseLocation, $warehouseAddress)";
+$sql = "INSERT INTO Warehouse(warehouse_id, warehouse_location, warehouse_addr) VALUES ($warehouseID, '$warehouseLocation', '$warehouseAddress')";
 
 // select statement for updated values
 

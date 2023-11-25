@@ -17,9 +17,6 @@
     $count = $_GET['productCount'];
     $tdate = date('Y-m-d');
 
-    printf($tdate);
-    printf("\n");
-
     $products = array();
     $productCounts = array();
 
@@ -36,22 +33,26 @@
     if($stmt = $conn->prepare($sql))
     {
       $stmt->bind_param("isii", $tid, $tdate, $bid, $sid);
-      $stmt->execute();
+      if($stmt->execute()){
+        echo"Form submitted successfully";
+      }
+      else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
     $stmt->close();
 
     for($i=0; $i<$count; $i++)
     {
-        
+        $sql = "INSERT INTO TransactionProducts (buyer_id, seller_id, transaction_id, product_id, product_count)
+                VALUES (?, ?, ?, ?, ?)";
+        if($stmt = $conn->prepare($sql))
+        {
+          $stmt->bind_param("iiiii", $bid, $sid, $tid, $products[$i], $productCounts[$i]);
+          $stmt->execute();
+        }
+        $stmt->close();
     }
-
-    /*echo "<pre>";
-    print_r($products);
-    echo "</pre>";
-
-    echo "<pre>";
-    print_r($productCounts);
-    echo "</pre>";*/
 
     $conn->close();
 ?>

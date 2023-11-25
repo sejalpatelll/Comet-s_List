@@ -22,7 +22,13 @@
     if($stmt = $conn->prepare($sqlBuyer))
     {
       $stmt->bind_param("iss", $bid, $fName, $lName);
-      $stmt->execute();
+      if($stmt->execute())
+      {
+        echo "Form submitted successfully";
+      }
+      else{
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
     $stmt->close();
 
