@@ -27,13 +27,22 @@
 
 <main>
   <h2>Update Shipment Section</h2>
-  <form>
+  <form action="updateShipment.php" method="get">
     <label for="shipmentID">Shipment ID:</label>
     <input type="number" id="shipmentID" name="shipmentID" required><br>
 
-    <input type="submit" id="shipmentSent" value="Shipment Sent"><br>
+    <fieldset>
+      <div>
+        <input type="radio" id="shipmentSent" value="shipmentSent" name="update"/>
+        <label for="shipmentSent">Shipment Sent</label>
+      </div>
+      <div>
+        <input type="radio" id="shipmentArrived" value="shipmentArrived" name="update"/>
+        <label for="shipmentArrived">Shipment Arrived</label>
+      </div>
+    </fieldset>
 
-    <input type="submit" id="shipmentArrived" value="Shipment Arrived"><br>
+    <input type="submit"><br>
   </form>
 </main>
 
