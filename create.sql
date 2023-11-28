@@ -108,6 +108,7 @@ CREATE TABLE IncomingShipmentProducts (
 	shipment_id		int		NOT NULL,
 	seller_id		int		NOT NULL,
 	product_id		int,
+	count           int,
 	PRIMARY KEY (shipment_id, seller_id, product_id),
 	FOREIGN KEY (shipment_id) REFERENCES Shipment(shipment_id)
 		ON DELETE CASCADE ON UPDATE CASCADE,
@@ -134,6 +135,7 @@ CREATE TABLE OutgoingShipmentProducts (
 	shipment_id		int		NOT NULL,
 	buyer_id		int		NOT NULL,
 	product_id		int,
+	count           int,
 	PRIMARY KEY (shipment_id, buyer_id, product_id),
 	FOREIGN KEY (shipment_id) REFERENCES OutgoingShipment(shipment_id)
 		ON DELETE CASCADE ON UPDATE CASCADE,
