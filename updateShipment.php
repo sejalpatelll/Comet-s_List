@@ -16,12 +16,12 @@ $arriveDate = $_GET['shipmentArrived'];
 
 if(!empty($shipDate)) {
     $sql = "UPDATE Shipment 
-        SET ship_date = $shipDate, status='in Transit'
+        SET ship_date = date('m/d/Y'), status='in Transit'
         WHERE shipment_id = $shipmentID;";
 }
 else {
     $sql = "UPDATE Shipment 
-        SET arrival_date = $arriveDate, status='ARRIVED'
+        SET arrival_date = date('m/d/Y'), status='ARRIVED'
         WHERE shipment_id = $shipmentID;";
 }
 
