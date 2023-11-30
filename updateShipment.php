@@ -10,10 +10,10 @@ if($conn -> connect_error) {
   die("Connection failed: " . $conn -> connect_error);
 }
 
-$shipmentID = $_GET['shipmentID'];
-$shipDate = $_GET['update'];
+$shipmentID = $_POST['shipmentID'];
+$shipDate = $_POST['update'];
 
-if($shipdate == "shipmentSent") {
+if($shipDate == "shipmentSent") {
     $sql = "UPDATE Shipment 
         SET ship_date = date('m/d/Y'), status='in Transit'
         WHERE shipment_id = $shipmentID;";
