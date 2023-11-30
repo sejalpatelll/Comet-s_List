@@ -19,7 +19,7 @@
     $businessName = $_GET['businessName'];
     $payableAccount = $_GET['payableAccount'];
 
-    $sqlNewSeller = "INSERT INTO Seller (sid, Business_Name) VALUES ($sid, $businessName)";
+    $sqlNewSeller = "INSERT INTO Seller (sid, Business_Name) VALUES ('$sid', '$businessName')";
     if ($conn->query($sqlNewSeller)==TRUE){
       echo "Successfully added new seller";
     }
@@ -27,7 +27,7 @@
       echo "Error: " . $sqlNewSeller . "<br>" . $conn->error;
     }
 
-    $sqlNewSellerAccount = "INSERT INTO SellerPayableAccount (SellerID, PayableAccount) VALUES ($sid, $payableAccount)";
+    $sqlNewSellerAccount = "INSERT INTO SellerPayableAccount (SellerID, PayableAccount) VALUES ('$sid', '$payableAccount')";
     if ($conn->query($sqlNewSellerAccount)==TRUE){
       echo "Successfully added new seller payable account";
     }
