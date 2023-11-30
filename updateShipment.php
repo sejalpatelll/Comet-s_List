@@ -12,15 +12,16 @@ if($conn -> connect_error) {
 
 $shipmentID = $_POST['shipmentID'];
 $shipDate = $_POST['update'];
+$tdate = date('Y-m-d');
 
 if($shipDate == "shipmentSent") {
     $sql = "UPDATE Shipment 
-        SET ship_date = date('m/d/Y'), status='in Transit'
+        SET ship_date = $tdate, status='in Transit'
         WHERE shipment_id = $shipmentID;";
 }
 else {
     $sql = "UPDATE Shipment 
-        SET arrival_date = date('m/d/Y'), status='ARRIVED'
+        SET arrival_date = $tdate, status='ARRIVED'
         WHERE shipment_id = $shipmentID;";
 }
 
