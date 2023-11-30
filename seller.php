@@ -24,7 +24,7 @@
       echo "Successfully added new seller";
     }
     else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error: " . $sqlNewSeller . "<br>" . $conn->error;
     }
 
     $sqlNewSellerAccount = "INSERT INTO SellerPayableAccount (SellerID, PayableAccount) VALUES ($sid, $payableAccount)";
@@ -32,7 +32,7 @@
       echo "Successfully added new seller payable account";
     }
     else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error: " . $sqlNewSellerAccount . "<br>" . $conn->error;
     }
 
     $conn->close();
