@@ -20,7 +20,7 @@
     $productPrice = $_GET['productPrice']; #number
     $productDescription = $_GET['productDescription'];
 
-    $newProductQuery = "INSERT INTO Seller (pid, Product_name, Product_desc, Price) VALUES ($pid, $productName, $productDescription, $productPrice)";
+    $newProductQuery = "INSERT INTO Product (pid, Product_name, Product_desc, Price) VALUES ('$pid', '$productName', '$productDescription', '$productPrice')";
     if ($conn->query($newProductQuery)==TRUE){
       echo "Successfully added new product";
     }
