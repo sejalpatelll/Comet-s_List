@@ -18,14 +18,14 @@
     $pid = $_GET['productID'];
     $productName = $_GET['productName'];
     $productPrice = $_GET['productPrice']; #number
-    $productDescription = $_GET['productDescription']
+    $productDescription = $_GET['productDescription'];
 
     $newProductQuery = "INSERT INTO Seller (pid, Product_name, Product_desc, Price) VALUES ($pid, $productName, $productDescription, $productPrice)";
     if ($conn->query($newProductQuery)==TRUE){
       echo "Successfully added new product";
     }
     else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      echo "Error: " . $newProductQuery . "<br>" . $conn->error;
     }
 
     $conn->close();
