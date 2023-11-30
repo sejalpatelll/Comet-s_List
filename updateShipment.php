@@ -11,7 +11,7 @@ if($conn -> connect_error) {
 }
 
 $shipmentID = $_GET['shipmentID'];
-//$shipDate = $_GET['update'];
+$shipDate = $_GET['update'];
 
 if($shipDate == "shipmentSent") {
     $sql = "UPDATE Shipment 
