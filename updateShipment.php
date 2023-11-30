@@ -11,10 +11,9 @@ if($conn -> connect_error) {
 }
 
 $shipmentID = $_GET['shipmentID'];
-$shipDate = $_GET['shipmentSent'];
-$arriveDate = $_GET['shipmentArrived'];
+$shipDate = $_GET['update'];
 
-if(!empty($shipDate)) {
+if($shipdate == "shipmentSent") {
     $sql = "UPDATE Shipment 
         SET ship_date = date('m/d/Y'), status='in Transit'
         WHERE shipment_id = $shipmentID;";
