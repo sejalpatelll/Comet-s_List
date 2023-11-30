@@ -20,13 +20,19 @@
     $productPrice = $_GET['productPrice']; #number
     $productDescription = $_GET['productDescription'];
 
-    $newProductQuery = "INSERT INTO Product (pid, Product_name, Product_desc, Price) VALUES ('$pid', '$productName', '$productDescription', '$productPrice')";
-    if ($conn->query($newProductQuery)==TRUE){
-      echo "Successfully added new product";
+    $sqlNewProduct = "INSERT INTO Product (pid, Product_name, Product_desc, Price)
+                      Values (?, ?, ?, ?)";
+    if($stmt = $conn->prepare($sqlNewProduct))
+    {
+      $stmt->bind_param("issd", $pid, $productName, $productDescription, $productPrice);
+      if($stmt->execute()){
+        echo"Successfully added new product";
+      }
+      else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
-    else {
-      echo "Error: " . $newProductQuery . "<br>" . $conn->error;
-    }
+    $stmt->close();
 
     $conn->close();
 ?>
